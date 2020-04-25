@@ -3,10 +3,23 @@ import math
 import numpy as np
 
 
-
 class Filter:
+    """
+    The Filter class describes the construction, members, and functions of the 2d gaussian convolution filter
+    vars: self.elements - 2d list containing the values of the filter
+    functions:
+    __init__(size,sigma)
+    displayFilter()
+    applyFilter(image)
+    """
 
     def __init__(self,size,sigma):
+        """
+
+        :param size: The desired window size of the filter Ex. 5 would result in a 5x5 window
+        NOTE: Size must be an odd positive integer
+        :param sigma: The variance of the gaussian distribution
+        """
         self.size = size
         self.sigma = sigma
         self.elements = [[0] * size for i in range(size)]
@@ -25,6 +38,10 @@ class Filter:
 
 
     def displayFilter(self):
+        """
+        Displays the filter matrix in an easy to read string format
+        :return: null
+        """
         for i in range(self.size):
             res = ""
             for j in range(self.size):
@@ -33,6 +50,11 @@ class Filter:
             print(res)
 
     def applyFilter(self,image):
+        """
+        Applies the gaussian filter to the image
+        :param image: 2d list containing grey scale image values.
+        :return:
+        """
         filteredImage = np.zeros((image.shape[0],image.shape[1]),np.float32)
         for i in range((self.size//2),image.shape[0]-((self.size//2)+1)):
             for j in range((self.size//2),image.shape[1]-((self.size//2)+1)):
